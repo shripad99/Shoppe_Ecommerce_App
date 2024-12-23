@@ -20,4 +20,18 @@ export class NavbarComponent implements OnInit {
     this.cartCount = getVal ? getVal.length : 0;
   }
 
+  toggleMenu(){
+    var menu = document.getElementById('collapseMenu');
+    if(menu){
+      menu.classList.toggle('show');
+    }
+  }
+
+  toggleClose(){
+    var menu = document.getElementById('collapseMenu');
+    if(menu){
+      menu.classList.remove('show');
+    }
+  }
+
 }
