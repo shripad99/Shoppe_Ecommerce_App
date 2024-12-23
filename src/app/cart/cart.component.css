@@ -1,0 +1,12 @@
+.cartBox{
+    background-color: #fff;
+    padding: 50px 50px;
+}
+.cartBox img{
+    width: 100%;
+}
+.priceBox{
+    background-color: #f5f5f5;
+    padding: 30px 30px;
+    margin-top: 20px;
+}

@@ -1,0 +1,72 @@
+<app-navbar></app-navbar>
+<main class="overflow-hidden">
+  <!-- banner list start -->
+    <div class="mt-2 container mx-auto">
+        <ngx-slick-carousel class="carousel relative" #slickModal="slick-carousel" [config]="myConfig">
+          <div ngxSlickItem *ngFor="let img of bannerImgs" class="p-2 relative">
+            <img 
+              [src]="img.src" 
+              alt="banner image" 
+              class="w-full h-full object-cover rounded-lg shadow-md"
+            />
+          </div>
+        </ngx-slick-carousel>
+    </div>
+    <!-- banner list end -->
+
+    <!-- categories list -->
+     <div class="container mx-auto">
+      <div class="grid grid-cols-2 justify-center md:grid-cols-5 gap-x-4">
+        <div class="" *ngFor="let data of getCategoriesData">
+          <a class="flex flex-col justify-center" [routerLink]="['product-page', data.code]">
+            <img [src]="data.img" alt="category" class="rounded mb-2"/>
+            <h4 class="text-center mb-4">{{data.name}}</h4>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- categories list end -->
+
+    <!-- product list start -->
+
+      <!-- appliances product --> 
+        <div class="container mx-auto max-w-7xl mt-3 mb-3">
+          <p class="flex justify-between items-center gap-2 px-2">
+            <a href="" [routerLink]="['/product-page','appliances']"><h1 class="text-xl">Best of Appliances</h1></a>
+            <a href="" [routerLink]="['/product-page','appliances']"><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M665.08-450H180v-60h485.08L437.23-737.85 480-780l300 300-300 300-42.77-42.15L665.08-450Z"/></svg></a>
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-4 mt-10">
+            <a class="productLink" routerLink="['/product-detail',data.pdCategory,data.pdId]" *ngFor="let data of getAppliancesProductData;index as i">
+              <div class="productContent" *ngIf="i<=3">
+                <div class="productImg">
+                <img src="{{data.pdImg}}">
+                </div>
+                <h4 class="mt-2">{{data.pdName}}</h4>
+              </div>
+            </a>
+          </div>
+        </div>
+      <!-- end appliances product -->
+
+      <!-- fashion product --> 
+      <div class="container mx-auto mt-3 mb-3">
+        <p class="flex justify-between items-center gap-2 px-2">
+          <a href="" [routerLink]="['/product-page','fashion']"><h1 class="text-xl">Best of Fashion</h1></a>
+          <a href="" [routerLink]="['/product-page','fashion']"><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M665.08-450H180v-60h485.08L437.23-737.85 480-780l300 300-300 300-42.77-42.15L665.08-450Z"/></svg></a>
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-4 mt-10">
+          <a class="productLink" routerLink="['/product-detail',data.pdCategory,data.pdId]" *ngFor="let data of getFashionProductData;index as i">
+            <div class="productContent" *ngIf="i<=3">
+              <div class="productImg">
+              <img src="{{data.pdImg}}">
+              </div>
+              <h4 class="mt-2">{{data.pdName}}</h4>
+            </div>
+          </a>
+        </div>
+      </div>
+    <!-- end fashion product -->
+
+    <!-- product list end -->
+
+</main>

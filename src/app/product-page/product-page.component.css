@@ -1,0 +1,15 @@
+.pageBox{
+    padding: 50px 50px;
+    margin: 50px 0px;
+    background-color: #fff;
+}
+.pageContent{
+    padding: 10px 40px;
+}
+.pageContent img{
+    width: 50%;
+}
+.pageContent h4{
+    font-weight: bold;
+    font-size: 18px;
+}

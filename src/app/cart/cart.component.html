@@ -1,0 +1,177 @@
+<app-navbar [cartCount]="totalCart"></app-navbar>
+<main class="container mx-auto mt-5 mb-5">
+
+    <div class="bg-white text-center font-bold mt-5 p-5" *ngIf="totalCart == 0">
+        <h4>Cart is empty!</h4>
+    </div>
+
+    <div class="h-screen pt-20" *ngIf="totalCart > 0">
+        <h1 class="mb-10 text-center text-2xl font-medium">Cart Items</h1>
+        <div class=" px-6 md:flex gap-6 xl:px-0">
+          <!-- Cart Items Section -->
+          <div class="rounded-lg md:w-2/3">
+            <div
+              class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
+              *ngFor="let data of getCartData"
+            >
+              <img
+                [src]="data.pdImg"
+                alt="product-image"
+                class="w-full rounded-lg sm:w-40 sm:h-40 object-contain"
+              />
+              <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
+                <div class="mt-5 sm:mt-0">
+                  <h2 class="text-lg font-medium text-gray-900">{{data.pdName}}</h2>
+                  <p class="mt-1 text-xs text-gray-700">{{ data.pdSize }}</p>
+                </div>
+                <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
+                  <div class="flex items-center border-gray-100">
+                    <button
+                      class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                      [disabled]="data.plusMinusCounter > 1 ? false : true"
+                    (click)="plusMinusCount(data, 'minus')">
+                      -
+                    </button>
+                    <input class="h-8 w-8 border bg-white text-center text-xs outline-none" type="number" value="{{data.plusMinusCounter}}" disabled/>
+                    <button
+                      class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                      [disabled]="data.plusMinusCounter < 5 ? false : true"
+                      (click)="plusMinusCount(data, 'plus')"
+                      >
+                      +
+                    </button>
+                  </div>
+                  <div class="flex items-center space-x-4">
+                    <p class="text-sm">₹{{data.pdPrice | number}}</p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="h-5 w-5 cursor-pointer duration-150 hover:text-red-500"
+                      (click)="removeCart(data)"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Subtotal Section -->
+          <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+            <div class="mb-2">
+                <h4>Price Details</h4>
+            </div>
+            <hr class="my-4" />
+            <div class="mb-2 flex justify-between">
+              <p class="text-gray-700">Subtotal</p>
+              <p class="text-gray-700">₹ {{totalAmount | number}}</p>
+            </div>
+            <div class="flex justify-between">
+              <p class="text-gray-700">Shipping</p>
+              <p class="text-gray-700">Free</p>
+            </div>
+            <hr class="my-4" />
+            <div class="flex justify-between">
+              <p class="text-lg font-bold">Total</p>
+              <div class="">
+                <p class="mb-1 text-lg font-bold text-right">
+                    ₹ {{totalAmount | number}}
+                </p>
+                <p class="text-sm text-gray-700">including GST</p>
+              </div>
+            </div>
+            <button
+              class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
+              (click)="toggleModal()"
+            >
+              Place Order
+            </button>
+          </div>
+
+          <!-- Modal -->
+          <div
+          *ngIf="isModalOpen"
+          class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75"
+          id="exampleModal"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+          >
+          <div class="bg-white rounded-lg shadow-lg w-full max-w-md mx-auto">
+            <div class="border-b px-6 py-4 flex justify-between items-center">
+              <h1 class="text-lg font-semibold" id="exampleModalLabel">Confirm Order</h1>
+              <button
+                type="button"
+                class="text-gray-500 hover:text-gray-700"
+                aria-label="Close"
+                (click)="toggleModal()"
+              >
+                &times;
+              </button>
+            </div>
+            <div class="p-6">
+              <form>
+                <div class="mb-4">
+                  <label for="recipient-name" class="block text-sm font-medium text-gray-700">
+                    Enter Email Id
+                  </label>
+                  <input
+                    type="text"
+                    id="recipient-name"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2"
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="message-text" class="block text-sm font-medium text-gray-700">
+                    Enter Address
+                  </label>
+                  <textarea
+                    id="message-text"
+                    rows="3"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                  ></textarea>
+                </div>
+                <div class="mb-4">
+                  <label class="flex items-center space-x-2">
+                    <input
+                      type="radio"
+                      name="payment-method"
+                      class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                      checked
+                    />
+                    <span class="text-sm font-medium text-gray-700">Cash on Delivery</span>
+                  </label>
+                </div>
+                <div class="mb-4">
+                  <h5 class="text-lg font-semibold">Total Amount: ₹ {{ totalAmount | number }}</h5>
+                </div>
+              </form>
+            </div>
+            <div class="border-t px-6 py-4 flex justify-end space-x-4">
+              <button
+                type="button"
+                class="rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300"
+                (click)="toggleModal()"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-600"
+                (click)="orderClick()"
+              >
+                Order Now
+              </button>
+            </div>
+          </div>
+          </div>          
+        </div>
+    </div>     
+</main>
