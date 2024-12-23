@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <main class="overflow-hidden">
   <!-- banner list start -->
-    <div class="mt-2 container mx-auto">
+    <div class="mt-2 mx-auto max-w-7xl">
         <ngx-slick-carousel class="carousel relative" #slickModal="slick-carousel" [config]="myConfig">
           <div ngxSlickItem *ngFor="let img of bannerImgs" class="p-2 relative">
             <img 
@@ -15,7 +15,7 @@
     <!-- banner list end -->
 
     <!-- categories list -->
-     <div class="container mx-auto">
+     <div class="mx-auto max-w-7xl">
       <div class="grid grid-cols-2 justify-center md:grid-cols-5 gap-x-4">
         <div class="" *ngFor="let data of getCategoriesData">
           <a class="flex flex-col justify-center" [routerLink]="['product-page', data.code]">
@@ -30,7 +30,7 @@
     <!-- product list start -->
 
       <!-- appliances product --> 
-        <div class="container mx-auto max-w-7xl mt-3 mb-3">
+        <div class="mx-auto max-w-7xl mt-3 mb-3">
           <p class="flex justify-between items-center gap-2 px-2">
             <a href="" [routerLink]="['/product-page','appliances']"><h1 class="text-xl">Best of Appliances</h1></a>
             <a href="" [routerLink]="['/product-page','appliances']"><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M665.08-450H180v-60h485.08L437.23-737.85 480-780l300 300-300 300-42.77-42.15L665.08-450Z"/></svg></a>
@@ -49,7 +49,7 @@
       <!-- end appliances product -->
 
       <!-- fashion product --> 
-      <div class="container mx-auto mt-3 mb-3">
+      <div class="mx-auto max-w-7xl mt-3 mb-3">
         <p class="flex justify-between items-center gap-2 px-2">
           <a href="" [routerLink]="['/product-page','fashion']"><h1 class="text-xl">Best of Fashion</h1></a>
           <a href="" [routerLink]="['/product-page','fashion']"><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M665.08-450H180v-60h485.08L437.23-737.85 480-780l300 300-300 300-42.77-42.15L665.08-450Z"/></svg></a>
