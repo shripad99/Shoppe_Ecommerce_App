@@ -5,12 +5,14 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DataStorageService } from '../service/data-storage.service';
 import { Router } from '@angular/router';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-product-details',
   imports: [
     CommonModule,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css'

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { GetDataService } from '../service/get-data.service';
 import { RouterLink, RouterModule } from '@angular/router';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ import { RouterLink, RouterModule } from '@angular/router';
     NavbarComponent,
     CommonModule,
     SlickCarouselModule,
-    RouterModule
+    RouterModule,
+    FooterComponent
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']

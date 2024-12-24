@@ -4,13 +4,15 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { GetDataService } from '../service/get-data.service';
 import { RouterLink, RouterModule } from '@angular/router';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-product-page',
   imports: [
     NavbarComponent,
     RouterModule,
-    CommonModule
+    CommonModule,
+    FooterComponent
   ],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.css'

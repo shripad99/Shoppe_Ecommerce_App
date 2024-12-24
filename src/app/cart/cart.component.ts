@@ -3,12 +3,14 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { DataStorageService } from '../service/data-storage.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-cart',
   imports: [
     CommonModule,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
